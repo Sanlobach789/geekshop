@@ -22,9 +22,10 @@ from django.conf.urls import include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', mainapp_views.index, name='index'),
-    path('products/', mainapp_views.products, name='products'),
-    # path('products/', include('mainapp.urls', namespace='products')),
+    path('', mainapp_views.index, name='main'),
+    #path('products/', mainapp_views.products, name='products'),
+    path('auth/', include('authapp.urls', namespace='auth')),
+    path('products/', include('mainapp.urls', namespace='products')),
 ]
 
 if settings.DEBUG:
