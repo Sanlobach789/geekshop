@@ -10,6 +10,8 @@ urlpatterns = [
     path('', mainapp_views.main, name='main'),
     path('products/', include('mainapp.urls', namespace='products')),
     path('auth/', include('authapp.urls', namespace='auth')),
+    path('baskets/', include('basketapp.urls', namespace='baskets')),
+    path('avatar/', include('avatar.urls'))
 ]
 
 if settings.DEBUG:
