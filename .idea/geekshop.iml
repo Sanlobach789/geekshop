@@ -23,6 +23,7 @@
       <list>
         <option value="$MODULE_DIR$/mainapp/templates" />
         <option value="$MODULE_DIR$/authapp/templates" />
+        <option value="$MODULE_DIR$/adminapp/templates" />
       </list>
     </option>
   </component>
