@@ -1,5 +1,9 @@
 {% extends 'adminapp/base.html' %}
 
+{% block title %}
+    GeekShop - Создание пользователя
+{% endblock %}
+
 {% block content %}
     <h1 class="mt-4">Создание пользователя</h1>
     <form action="{% url 'admin_staff:admin_users_create' %}" method="post" enctype="multipart/form-data">
