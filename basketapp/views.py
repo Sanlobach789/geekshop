@@ -17,11 +17,13 @@ def basket_add(request, id=None):
         basket = Basket(user=request.user, product=product)
         basket.quantity += 1
         basket.save()
+        print(baskets)
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
     else:
         basket = baskets.first()
         basket.quantity += 1
         basket.save()
+        print(baskets)
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
@@ -40,15 +42,12 @@ def basket_remove(request, id=None):
 def basket_edit(request, id, quantity):
     if request.is_ajax():
         quantity = int(quantity)
-        basket = Basket.objects.get(id=int(id))
+        basket_item = Basket.objects.get(id=int(id))
         if quantity > 0:
-            basket.quantity = quantity
-            basket.save()
+            basket_item.quantity = quantity
+            basket_item.save()
         else:
-            basket.delete()
-        baskets = Basket.objects.filter(user=request.user)
-        context = {
-            'baskets': baskets,
-        }
-        result = render_to_string('basketapp/basket.html', context)
+            basket_item.delete()
+
+        result = render_to_string('basketapp/basket.html')
         return JsonResponse({'result': result})
