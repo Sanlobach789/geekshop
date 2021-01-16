@@ -37,6 +37,9 @@ def register(request):
             else:
                 print('Сообщение не отправлено')
                 return HttpResponseRedirect(reverse('auth:login'))
+        else:
+            context = {'form': form}
+            return render(request, 'authapp/register.html', context)
     else:
         form = UserRegisterForm()
         context = {'form': form}
