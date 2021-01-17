@@ -139,6 +139,8 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 
+geekshop/vk.json
+
 Будет удалено .DS_Store
 Будет удалено .idea/geekshop.iml
 Будет удалено .idea/inspectionProfiles/
