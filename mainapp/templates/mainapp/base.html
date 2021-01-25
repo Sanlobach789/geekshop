@@ -41,17 +41,10 @@
                 {% if user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% include 'mainapp/includes/inc_menu.html' %}">
-                            {{ user.first_name }}
-                            <i class="fas fa-user-circle"></i>
+{#                            {{ user.first_name }}#}
+{#                            <i class="fas fa-user-circle"></i>#}
                         </a>
                     </li>
-                    {% comment %}{% if user.is_staff or user.is_superuser %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'admin_staff:index' %}">
-                                <i class="fas fa-users-cog"></i>
-                            </a>
-                        </li>
-                    {% endif %}{% endcomment %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'auth:logout' %}">Выйти <i class="fas fa-sign-out-alt"></i></a>
                     </li>

@@ -38,24 +38,25 @@ class Order(models.Model):
         return 'Текущий заказ: {}'.format(self.id)
 
     def get_total_quantity(self):
-        items = self.orderitems.selects_related()
+        items = self.orderitems.select_related()
         return sum(list(map(lambda x: x.quantity, items)))
 
     def get_product_type_quantity(self):
-        items = self.orderitems.selects_related()
+        items = self.orderitems.select_related()
         return len(items)
 
     def get_total_cost(self):
-        items = self.orderitems.selects_related()
+        items = self.orderitems.select_related()
         return sum(list(map(lambda x: x.quantity * x.product.price, items)))
 
     def delete(self):
-        for item in self.orderitems.selects_related():
+        for item in self.orderitems.select_related():
             item.product.quantity += item.quantity
             item.product.save()
 
         self.is_active = False
         self.save()
+
 
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, related_name='orderitems', on_delete=models.CASCADE)
@@ -64,4 +65,3 @@ class OrderItem(models.Model):
 
     def get_product_cost(self):
         return self.product.price * self.quantity
-

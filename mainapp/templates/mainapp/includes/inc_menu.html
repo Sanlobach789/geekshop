@@ -1,8 +1,8 @@
-<li>
-    <a href="{% url 'contact' %}" class="{% if request.resolver_match.url_name == 'contact' %}active{% endif %}">
+{% comment %}<li>
+<a href="{% url 'contact' %}" class="{% if request.resolver_match.url_name == 'contact' %}active{% endif %}">
     контакты
     </a>
-</li>
+</li>{% endcomment %}
 
 {% if user.is_authenticated %}
     <li>
@@ -28,7 +28,7 @@
 {% endif %}
 {% if user.is_superuser %}
     <li>
-        <a href="{% url 'admin:users' %}">
+        <a href="{% url 'admin_staff:index' %}">
             админка
         </a>
     </li>
