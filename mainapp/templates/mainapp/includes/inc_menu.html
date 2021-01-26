@@ -5,20 +5,20 @@
 </li>{% endcomment %}
 
 {% if user.is_authenticated %}
-    <li>
+    <li class="nav-item">
         <div class="dropdown">
-            <a class="dropdown-toggle" href="" data-toggle="dropdown">
+            <a class="btn btn-secondary dropdown-toggle" class="dropdown-toggle" href="" data-toggle="dropdown">
                 {{ user.first_name|default:'Пользователь' }}
                 <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
                 <li>
-                    <a href="{% url 'auth:edit' %}">
+                    <a class="dropdown-item" href="{% url 'auth:edit' %}">
                         профиль
                     </a>
                 </li>
                 <li>
-                    <a href="{% url 'ordersapp:orders_list' %}">
+                    <a class="dropdown-item" href="{% url 'ordersapp:orders_list' %}">
                         заказы
                     </a>
                 </li>
@@ -27,9 +27,7 @@
     </li>
 {% endif %}
 {% if user.is_superuser %}
-    <li>
-        <a href="{% url 'admin_staff:index' %}">
-            админка
-        </a>
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'admin_staff:index' %}">админка</a>
     </li>
 {% endif %}
