@@ -1,0 +1,38 @@
+{% comment %}<li>
+<a href="{% url 'contact' %}" class="{% if request.resolver_match.url_name == 'contact' %}active{% endif %}">
+    контакты
+    </a>
+</li>{% endcomment %}
+
+{% if user.is_authenticated %}
+    <li class="nav-item">
+        <div class="dropdown">
+            <a class="btn btn-secondary dropdown-toggle" class="dropdown-toggle" href="" data-toggle="dropdown">
+                {{ user.first_name|default:'Пользователь' }}
+                <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                    <a class="dropdown-item" href="{% url 'auth:edit' %}">
+                        профиль
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item" href="{% url 'ordersapp:orders_list' %}">
+                        заказы
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item" href="{% url 'auth:profile' %}">
+                        корзина
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </li>
+{% endif %}
+{% if user.is_superuser %}
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'admin_staff:index' %}">админка</a>
+    </li>
+{% endif %}
