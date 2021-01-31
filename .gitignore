@@ -140,10 +140,3 @@ dmypy.json
 cython_debug/
 
 *vk.json
-
-Будет удалено .DS_Store
-Будет удалено .idea/geekshop.iml
-Будет удалено .idea/inspectionProfiles/
-Будет удалено .idea/misc.xml
-Будет удалено .idea/modules.xml
-Будет удалено .idea/vcs.xml
