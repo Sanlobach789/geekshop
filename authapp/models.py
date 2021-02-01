@@ -1,6 +1,5 @@
 from datetime import timedelta
 
-from Tools.demo.mcast import sender
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, AbstractUser
 from django.db.models.signals import post_save
