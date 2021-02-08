@@ -163,12 +163,12 @@ LOGIN_URL = '/auth/login/'
 # DOMAIN_NAME = 'http://localhost:8000'
 
 # EMAIL_HOST = 'localhost'
-EMAIL_HOST = '194.67.112.30'
-EMAIL_PORT = '25'
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_PORT = '465'
 # EMAIL_HOST_USER = 'django@geekshop.local'
-EMAIL_HOST_USER = 'django@194.67.112.30'
-EMAIL_HOST_PASSWORD = 'geekshop'
-EMAIL_USE_SSL = False
+EMAIL_HOST_USER = 'test.django.shop@yandex.ru'
+EMAIL_HOST_PASSWORD = 'TestDjangoShop789'
+EMAIL_USE_SSL = True
 
 EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 EMAIL_FILE_PATH = 'tmp/email-messages/'
