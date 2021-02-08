@@ -22,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'm$kzbd!2mk*+(%09_mo4fd2=mwmbtx8vy$+zj!&=5)a=c#0i@b'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -102,15 +102,15 @@ WSGI_APPLICATION = 'geekshop.wsgi.application'
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    # }
     'default': {
-        'NAME': 'geekshop',
-        'ENGINE': 'django.db.backends.postgresql',
-        'USER': 'postgres',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
+    # 'default': {
+    #     'NAME': 'geekshop',
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'USER': 'postgres',
+    # }
 }
 
 # Password validation
@@ -162,9 +162,11 @@ LOGIN_URL = '/auth/login/'
 # DOMAIN_NAME = 'http://127.0.0.1:8000'
 # DOMAIN_NAME = 'http://localhost:8000'
 
-EMAIL_HOST = 'localhost'
+# EMAIL_HOST = 'localhost'
+EMAIL_HOST = '194.67.112.30'
 EMAIL_PORT = '25'
-EMAIL_HOST_USER = 'django@geekshop.local'
+# EMAIL_HOST_USER = 'django@geekshop.local'
+EMAIL_HOST_USER = 'django@194.67.112.30'
 EMAIL_HOST_PASSWORD = 'geekshop'
 EMAIL_USE_SSL = False
 
