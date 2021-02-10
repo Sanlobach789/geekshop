@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.db import transaction
 # from django.db.models.signals import pre_save, pre_delete
 # from django.dispatch import receiver
@@ -5,6 +6,7 @@ from django.forms import inlineformset_factory
 from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy, reverse
+from django.utils.decorators import method_decorator
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 
 from basketapp.models import Basket
@@ -18,6 +20,10 @@ class OrderList(ListView):
 
     def get_queryset(self):
         return Order.objects.filter(user=self.request.user)
+
+    @method_decorator(login_required())
+    def dispatch(self, *args, **kwargs):
+        return super(ListView, self).dispatch(*args, **kwargs)
 
 
 class OrderItemsCreate(CreateView):
@@ -40,7 +46,7 @@ class OrderItemsCreate(CreateView):
                     form.initial['product'] = basket_items[num].product
                     form.initial['quantity'] = basket_items[num].quantity
                     form.initial['price'] = basket_items[num].product.price
-                #basket_items.delete()
+                # basket_items.delete()
             else:
                 formset = OrderFormSet()
 
@@ -76,7 +82,8 @@ class OrderItemsUpdate(UpdateView):
         if self.request.POST:
             data['orderitems'] = OrderFormSet(self.request.POST, instance=self.object)
         else:
-            formset = OrderFormSet(instance=self.object)
+            queryset = self.object.orderitems.select_related()
+            formset = OrderFormSet(instance=self.object, queryset=queryset)
             for form in formset.forms:
                 if form.instance.pk:
                     form.initial['price'] = form.instance.product.price
@@ -119,6 +126,7 @@ def order_forming_complete(request, pk):
     order.save()
     return HttpResponseRedirect(reverse('ordersapp:orders_list'))
 
+
 def get_product_price(request, pk):
     if request.is_ajax():
         product = Product.objects.filter(pk=int(pk)).first()
@@ -126,7 +134,6 @@ def get_product_price(request, pk):
             return JsonResponse({'price': product.price})
         else:
             return JsonResponse({'price': 0})
-
 
 # @receiver(pre_save, sender=OrderItem)
 # @receiver(pre_delete, sender=Basket)
@@ -145,4 +152,3 @@ def get_product_price(request, pk):
 #     instance.product.quantity += instance.quantity
 #     instance.product.save()
 #
-
